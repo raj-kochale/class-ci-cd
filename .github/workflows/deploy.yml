@@ -11,14 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
           host: 3.83.111.225
           username: ubuntu
-          password: ${{ secrets.SSH_SECRET_KEY }}
+          key: ${{ secrets.SSH_SECRET_KEY }}
           port: 22
           script: whoami 
