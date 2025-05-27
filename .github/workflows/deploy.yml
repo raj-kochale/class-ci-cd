@@ -16,6 +16,6 @@ jobs:
         with:
           host: 3.83.111.225
           username: ubuntu
-          key: ${{ secrets.SSH_SECRET_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: whoami
