@@ -13,6 +13,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          script:
+          script: |
             ls
-            cd /class-ci-cd
+            
