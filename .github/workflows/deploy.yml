@@ -14,8 +14,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /class-ci-cd
-            git pull origin main
+            rm -rf ~/class-ci-cd
+            git clone https://github.com/raj-kochale/class-ci-cd.git ~/class-ci-cd
+            cd ~/class-ci-cd
             npm install
             npm run build
             npm run start
