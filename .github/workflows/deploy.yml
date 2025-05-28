@@ -1,21 +1,33 @@
-name: Deploy to EC2
-
+name: Deploy to Production
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
-    name: Push to EC2
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Execute remote SSH commands using SSH key
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Deploy to server
         uses: appleboy/ssh-action@v1
         with:
-          host: 3.83.111.225
+          host: 52.201.227.245
           username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.SSH_SECRET_KEY }}
           port: 22
-          script: whoami
+          script: |
+            cd
